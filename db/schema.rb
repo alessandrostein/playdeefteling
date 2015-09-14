@@ -11,12 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150902002749) do
+ActiveRecord::Schema.define(version: 20150902040510) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "calls", force: :cascade do |t|
+  create_table "activities", force: :cascade do |t|
     t.string   "description", default: "", null: false
     t.datetime "validate"
     t.string   "address"
@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 20150902002749) do
     t.integer  "user_id"
   end
 
-  add_index "calls", ["user_id"], name: "index_calls_on_user_id", using: :btree
+  add_index "activities", ["user_id"], name: "index_activities_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -48,5 +48,5 @@ ActiveRecord::Schema.define(version: 20150902002749) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
-  add_foreign_key "calls", "users"
+  add_foreign_key "activities", "users"
 end
